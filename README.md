@@ -111,3 +111,8 @@ const API = `${PIHOLE_BASE_URL}/api`;
 const PASSWORD = "XX"; // Replace XX with your Pi-hole password
 ```
 
+#Now put custom.css, index.html and all js files under and it should work
+```
+/var/www/html
+```
+
