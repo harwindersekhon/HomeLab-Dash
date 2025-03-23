@@ -1,27 +1,39 @@
 # Homelab-Dash 
+### What you will need
 
-## what you need
+- Linux container or vm debain based such as ubuntu 
+- Apache2 web server package installed
+- Little knowledge of linux commands to edit files and navigation
+- You will need to signup at https://openweathermap.org/ for free api key for weather
+- You know your pi hole password and IP
+- You know your proxmox IP and created api token with enough privliges to read system status
 
-### Web server such as apache2
-### API for openweather https://openweathermap.org/api
-### Proxmox api token but privilige sepration should be disabled (https://www.youtube.com/watch?v=wK8PUp7rjzs) 
-### Your Pi-hole password
+### Creating proxmox token with correct priviliges is bit tricky so watch couple of youtube videos
 
-## Now your password and IP changes are needed in 3 js files
-
-### 1. pi-hole.js, you will replace values at line 1 and line 3 which is your password and IP
-### 2. your apache2 virtual host config change. You will change  /etc/apache2/sites-available/000-default.conf and replace IP 2.254 in my case with your proxmox IP
-`
+### Step 1. Web server setup
+- Ssh into your vm or lxc conatiner
+- apt update -y && apt install apache2 -y
+- Remove index.html file
+```
+cd /var/www/html
+rm index.html
+```
+- Change virtual host config to make webserver act as reverse proxy 
+```
+cd /etc/apache2/sites-available/
+```
+- Edit **000-default.conf** file
+- Use nano or vim to delete entire content of it
+- Replace it with code below expect you need to **replace with your proxmox IP**
+```
 <VirtualHost *:80>
     ServerAdmin webmaster@localhost
     DocumentRoot /var/www/html
-
     # Enable SSL for proxying HTTPS requests (moved outside <Location>)
     SSLProxyEngine On
     SSLProxyVerify none
     SSLProxyCheckPeerCN off
     SSLProxyCheckPeerName off
-
     # Allow access to the proxy
     <Proxy *>
         Require all granted
@@ -30,8 +42,8 @@
     # Proxy configuration for /api
     <Location /api>
         # Proxy requests from /api to Proxmox API
-        ProxyPass https://192.168.2.254:8006/api2/json
-        ProxyPassReverse https://192.168.2.254:8006/api2/json
+        ProxyPass https://<YOURIP>:8006/api2/json
+        ProxyPassReverse https://<YOURIP>:8006/api2/json
 
         # CORS headers (optional for same-origin but useful for flexibility)
         Header set Access-Control-Allow-Origin "*"
@@ -48,14 +60,54 @@
     ErrorLog ${APACHE_LOG_DIR}/error.log
     CustomLog ${APACHE_LOG_DIR}/access.log combined
 </VirtualHost>
-`
-##run these commands to enable mods
-`
-sudo a2enmod dir
-sudo a2enmod mime
-sudo a2enmod rewrite
-sudo a2enmod proxy
-sudo a2enmod proxy_http
-sudo a2enmod ssl
-sudo a2enmod headers
-`
+```
+- Enable mods using comands given 
+```
+sudo a2enmod dir;
+sudo a2enmod mime;
+sudo a2enmod rewrite;
+sudo a2enmod proxy;
+sudo a2enmod proxy_http;
+sudo a2enmod ssl;
+sudo a2enmod headers;
+sudo systemctl restart apache2;
+```
+- Check modules are enabled
+```
+apache2ctl -M
+```
+- Now web server side is done
+
+------------
+### Asuming at this stage you already have 
+- Openweather api key
+- Proxmox token
+- Pi Hole password
+
+### Changing IPs and keys according to your system
+# Proxmox 
+- You already changed IP in 000-default.conf file under 
+```
+/etc/apache2/sites-available/
+```
+- Change proxmox.js file PROXMOX_API_TOKEN value, after =
+```
+const PROXMOX_API_TOKEN =  "PVEAPIToken=api@pam!token2=cc2597c-SOMETHING
+```
+# Weather
+- **Edit weather.js**
+- here change lat long and key
+```
+var lat = 43.XX //Example: New York latitude
+  var lon = -79.XX// Example: New York longitude
+  var apiKey = "XX"; // Replace with your OpenWeatherMap API key
+  ```
+
+#Pi hole
+- Change following and ignore Line 2
+```
+const PIHOLE_BASE_URL = "http://YOUR_PIHOLE_IP"; // Replace with your Pi-hole IP, e.g., http://192.168.1.66
+const API = `${PIHOLE_BASE_URL}/api`;
+const PASSWORD = "XX"; // Replace XX with your Pi-hole password
+```
+
