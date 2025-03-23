@@ -1,0 +1,215 @@
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #333333; /* Dark gray fallback */
+  color: #ffffff; /* White text */
+  position: relative;
+  min-height: 100vh;
+}
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("https://plus.unsplash.com/premium_photo-1712685912274-2483dade540f?q=80&w=2675&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+  background-size: cover;
+  background-position: center;
+  filter: blur(10px);
+  z-index: -2;
+}
+body::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(51, 51, 51, 0.6); /* Dark gray overlay */
+  z-index: -1;
+}
+.container {
+  position: relative;
+  z-index: 1;
+}
+.card-title {
+  color: #ffffff; /* White */
+}
+.text-muted {
+  color: #babaa9 !important; /* Yellow */
+}
+.dashboard-card {
+  height: 100%;
+  background-color: rgba(51, 51, 51, 0.85); /* Dark gray base */
+  transition: background-color 0.3s ease;
+}
+.pihole-section .dashboard-card {
+  background-color: rgba(51, 51, 51, 0.85); /* Dark gray base */
+}
+.bookmarks-section .dashboard-card {
+  background-color: rgba(51, 51, 51, 0.85); /* Dark gray base */
+}
+.stat-number {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #fb930c; /* White */
+}
+.icon-wrapper {
+  margin-right: 10px;
+  display: inline-block;
+  vertical-align: middle;
+  color: #f8fdf8; /* Green */
+}
+h1 {
+  color: #ffffff; /* White */
+}
+h2 {
+  color: #ffffff; /* White */
+  border-bottom: 2px solid #007100; /* Green */
+}
+.proxmox-section .card {
+  border-left: 4px solid #037203; /* Green */
+}
+.pihole-section .card {
+  border-left: 4px solid #ff0000; /* Red */
+}
+.bookmarks-section .card {
+  border-left: 4px solid #00b7ff; /* Blue */
+}
+.progress {
+  background-color: #4d4d4d; /* Darker gray */
+  height: 1rem;
+  border: 1px solid #018d01; /* Green outline */
+}
+.progress-bar {
+  transition: width 0.6s ease;
+  background: linear-gradient(
+    90deg,
+    #00cc00,
+    #ffff00
+  ); /* Green-to-yellow gradient */
+}
+.list-group-item {
+  background-color: transparent;
+  color: #ffffff; /* White */
+  border-color: #4d4d4d; /* Dark gray */
+}
+.list-group-item a {
+  color: #6a6af6; /* Blue */
+  text-decoration: none;
+}
+.list-group-item a:hover {
+  color: #ffff00; /* Yellow */
+  text-decoration: underline;
+}
+.card {
+  border-radius: 8px;
+}
+.stat-icon {
+  margin-right: 5px;
+  vertical-align: middle;
+  color: #ecddff; /* Red */
+}
+
+/* Even spacing for bookmarks */
+.bookmarks-section .card-body {
+  display: flex;
+  justify-content: space-evenly; /* Evenly distribute items */
+  align-items: center;
+  overflow-x: auto;
+  gap: 2px; /* Consistent minimum spacing */
+  padding: 15px; /* Adjust padding for balance */
+}
+
+/* Bookmark link styles */
+.bookmark-link {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  color: #ffffff; /* White base text */
+  font-size: 1rem;
+}
+
+/* Bookmark icon styles */
+.bookmark-icon {
+  margin-right: 2px;
+  vertical-align: middle;
+}
+
+/* Company-specific colors */
+.bookmark-link.eveng {
+  color: #fff; /* Green - EVE-NG’s branding leans toward tech green */
+}
+.bookmark-link.eveng .bookmark-icon {
+  color: #fff;
+}
+
+.bookmark-link.nextcloud {
+  color: #fff; /* Blue - Nextcloud’s primary brand color */
+}
+.bookmark-link.nextcloud .bookmark-icon {
+  color: #f8f8fa;
+}
+
+.bookmark-link.gmail {
+  color: #dcd0d0; /* Red - Gmail’s logo red */
+}
+.bookmark-link.gmail .bookmark-icon {
+  color: #ebe6e6;
+}
+
+.bookmark-link.outlook {
+  color: #f9f9f9; /* Blue - Outlook’s primary brand blue */
+}
+.bookmark-link.outlook .bookmark-icon {
+  color: #f9f9fc;
+}
+
+/* Hover effects */
+.bookmark-link:hover {
+  color: #fffff9; /* Yellow on hover for all */
+}
+.bookmark-link:hover .bookmark-icon {
+  color: #fbfbed; /* Yellow icon on hover */
+}
+
+/* Weather Section */
+
+.weather-section .dashboard-card {
+  background-color: rgba(51, 51, 51, 0.85); /* Dark gray base */
+}
+#weather-temp {
+  font-size: 1.5rem; /* Slightly larger for emphasis */
+}
+
+span {
+  color: white !important;
+}
+
+.tags-container {
+  display: flex;
+  flex-wrap: wrap; /* Allow tags to wrap */
+  gap: 0.25rem; /* Small gap between tags */
+}
+
+.domain-tag {
+  color: white !important;
+  display: inline-flex;
+  align-items: center; /* Vertically align domain and badge */
+  font-size: 0.9rem; /* Slightly smaller text */
+  max-width: 45%; /* Limit width to encourage wrapping */
+  overflow: hidden;
+  text-overflow: ellipsis; /* Truncate long domains */
+  white-space: nowrap; /* Keep each tag on one line */
+}
+
+.domain-tag span {
+  color: wheat;
+}
+
+.domain-tag .badge {
+  margin-left: 0.25rem; /* Space between domain text and badge */
+  padding: 0.2rem 0.4rem; /* Compact badge padding */
+  font-size: 0.8rem; /* Smaller badge text */
+}

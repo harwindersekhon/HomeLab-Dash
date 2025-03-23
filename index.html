@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HomeLab-Dash</title>
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link href="custom.css" rel="stylesheet" />
+  </head>
+  <body>
+    <div class="container py-4">
+      <h1 class="mb-4">
+        <i data-feather="activity" class="icon-wrapper"></i>System Dashboard
+      </h1>
+
+      <!-- Weather Section -->
+      <div class="row mb-4 weather-section">
+        <div class="col-12">
+          <h2 class="border-bottom pb-2">
+            <i data-feather="cloud" class="icon-wrapper"></i>Weather
+          </h2>
+        </div>
+        <div class="col-md-3 col-sm-6 mb-3">
+          <div class="card dashboard-card">
+            <div class="card-body">
+              <h5 class="card-title">
+                <i data-feather="map-pin" class="icon-wrapper"></i>
+                <span id="weather-city">Loading...</span>
+              </h5>
+              <p class="card-text stat-number">
+                <img
+                  id="weather-icon"
+                  src=""
+                  alt="Weather Icon"
+                  style="width: 40px; vertical-align: middle; margin-right: 5px"
+                />
+                <span id="weather-temp">N/A</span> °C
+              </p>
+              <p class="text-muted" id="weather-description">Loading...</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bookmarks Section -->
+      <div class="row bookmarks-section">
+        <div class="col-12">
+          <h2 class="border-bottom pb-2">
+            <i data-feather="bookmark" class="icon-wrapper"></i>Bookmarks
+          </h2>
+        </div>
+        <div class="col-12">
+          <div class="card dashboard-card">
+            <div
+              class="card-body d-flex justify-content-space-evenly align-items-center gap-3"
+            >
+              <a href="YOURIP" target="_blank" class="bookmark-link eveng">
+                <i data-feather="server" class="bookmark-icon"></i>
+                <span>EVENG</span>
+              </a>
+              <a href="YOUR_IP" target="_blank" class="bookmark-link nextcloud">
+                <i data-feather="cloud" class="bookmark-icon"></i>
+                <span>Nextcloud</span>
+              </a>
+              <a
+                href="https://mail.google.com"
+                target="_blank"
+                class="bookmark-link gmail"
+              >
+                <i data-feather="mail" class="bookmark-icon"></i>
+                <span>Gmail</span>
+              </a>
+              <a
+                href="https://outlook.live.com"
+                target="_blank"
+                class="bookmark-link outlook"
+              >
+                <i data-feather="inbox" class="bookmark-icon"></i>
+                <span>Outlook</span>
+              </a>
+              <a href="YOUR_IP" target="_blank" class="bookmark-link pihole">
+                <i data-feather="shield" class="bookmark-icon"></i>
+                <span>Pi-hole</span>
+              </a>
+
+              <a href="YOUR_IP" target="_blank" class="bookmark-link">
+                <i data-feather="book" class="bookmark-icon"></i>
+                <span>Example</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Proxmox Section -->
+      <div class="row mb-4 proxmox-section">
+        <div class="col-12">
+          <h2 class="border-bottom pb-2">
+            <i data-feather="server" class="icon-wrapper"></i>Proxmox Stats
+          </h2>
+        </div>
+
+        <div class="col-md-3 col-sm-6 mb-3">
+          <div class="card dashboard-card shadow-sm">
+            <div class="card-body d-flex align-items-center">
+              <div class="icon-circle me-3">
+                <i data-feather="box" class="text-primary"></i>
+              </div>
+              <div class="flex-grow-1">
+                <h5 class="card-title mb-1">LXC Containers</h5>
+                <div
+                  class="stats-row d-flex justify-content-between align-items-center"
+                >
+                  <div class="stat-item">
+                    <span class="stat-label text-muted">Running</span>
+                    <span class="stat-value fw-bold" id="lxc-running"
+                      >Loading...</span
+                    >
+                  </div>
+                  <div class="stat-item text-end">
+                    <span class="stat-label text-muted">Total</span>
+                    <span class="stat-value fw-bold" id="lxc-total"
+                      >Loading...</span
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-6 mb-3">
+          <div class="card dashboard-card shadow-sm">
+            <div class="card-body d-flex align-items-center">
+              <div class="icon-circle me-3">
+                <i data-feather="hard-drive" class="text-primary"></i>
+              </div>
+              <div class="flex-grow-1">
+                <h5 class="card-title mb-1">Virtual Machines</h5>
+                <div
+                  class="stats-row d-flex justify-content-between align-items-center"
+                >
+                  <div class="stat-item">
+                    <span class="stat-label text-muted">Running</span>
+                    <span class="stat-value fw-bold text-white" id="vms-running"
+                      >Loading...</span
+                    >
+                  </div>
+                  <div class="stat-item text-end">
+                    <span class="stat-label text-muted">Total</span>
+                    <span class="stat-value fw-bold" id="vms-total"
+                      >Loading...</span
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-3 col-sm-6 mb-3">
+          <div class="card dashboard-card">
+            <div class="card-body">
+              <h5 class="card-title">
+                <i data-feather="cpu" class="icon-wrapper"></i>CPU Usage
+              </h5>
+              <p class="card-text stat-number" id="cpu-usage">Loading...</p>
+              <div class="progress mt-2">
+                <div
+                  class="progress-bar"
+                  id="cpu-progress"
+                  role="progressbar"
+                  style="width: 0%"
+                  aria-valuenow="0"
+                  aria-valuemin="0"
+                  aria-valuemax="100"
+                ></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-6 mb-3">
+          <div class="card dashboard-card">
+            <div class="card-body">
+              <h5 class="card-title">
+                <i data-feather="database" class="icon-wrapper"></i>RAM Usage
+              </h5>
+              <p class="card-text stat-number" id="ram-usage">Loading...</p>
+              <div class="progress mt-2">
+                <div
+                  class="progress-bar"
+                  id="ram-progress"
+                  role="progressbar"
+                  style="width: 0%"
+                  aria-valuenow="0"
+                  aria-valuemin="0"
+                  aria-valuemax="100"
+                ></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-6 mb-3">
+          <div class="card dashboard-card">
+            <div class="card-body">
+              <h5 class="card-title">
+                <i data-feather="hard-drive" class="icon-wrapper"></i> Disk
+                Usage
+              </h5>
+              <div id="disk-usage">
+                <p>Loading disk data...</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-6 mb-3">
+          <div class="card dashboard-card">
+            <div class="card-body">
+              <h5 class="card-title">
+                <i data-feather="clock" class="icon-wrapper"></i>Uptime
+              </h5>
+              <p class="card-text stat-number" id="uptime">Loading...</p>
+              <p class="text-muted">Node Uptime</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-6 mb-3">
+          <div class="card dashboard-card">
+            <div class="card-body">
+              <h5 class="card-title">
+                <i data-feather="activity" class="icon-wrapper"></i>Status
+              </h5>
+              <p class="card-text stat-number" id="status">Loading...</p>
+              <p class="text-muted">Node Status</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pi-Hole Section -->
+      <div class="row mb-4 pihole-section">
+        <!-- Header -->
+        <div class="col-12 mb-3">
+          <h2 class="border-bottom pb-2">
+            <i data-feather="shield" class="icon-wrapper"></i> Pi-Hole Stats
+          </h2>
+        </div>
+
+        <!-- Left Column: Total Queries and Query Types -->
+        <div class="col-md-6 mb-3">
+          <div class="card dashboard-card">
+            <div class="card-body">
+              <h5 class="card-title">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="feather feather-bar-chart-2 icon-wrapper"
+                >
+                  <line x1="18" y1="20" x2="18" y2="10"></line>
+                  <line x1="12" y1="20" x2="12" y2="4"></line>
+                  <line x1="6" y1="20" x2="6" y2="14"></line>
+                </svg>
+                Total Queries
+              </h5>
+              <p class="card-text stat-number" id="total-queries">Loading...</p>
+              <div id="query-types">
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item">Loading query types...</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column: Combined Blocked Stats and Top Domains -->
+        <div class="col-md-6 mb-3">
+          <div class="row">
+            <!-- Combined Total Blocked and Recent Blocked -->
+            <div class="col-12 mb-3">
+              <div class="card dashboard-card">
+                <div class="card-body">
+                  <h5 class="card-title">
+                    <i data-feather="slash" class="icon-wrapper"></i> Blocked
+                    Stats
+                  </h5>
+                  <p class="card-text stat-number" id="total-blocked">
+                    Loading...
+                  </p>
+
+                  <h6 class="mb-2 text-white">Recent Blocked Domains</h6>
+                  <ul class="list-group list-group-flush" id="recent-blocked">
+                    <li class="list-group-item">Loading...</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <!-- Top Domains -->
+            <div class="col-12">
+              <div class="card dashboard-card">
+                <div class="card-body">
+                  <h5 class="card-title">
+                    <i data-feather="globe" class="icon-wrapper"></i> Top
+                    Domains
+                  </h5>
+                  <div id="top-domains">
+                    <div class="tags-container">
+                      <span class="text-muted">Loading...</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <!-- Feather Icons -->
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <!-- Your Scripts -->
+    <script src="pi-hole.js"></script>
+    <script src="proxmox.js"></script>
+    <script src="weather.js"></script>
+  </body>
+</html>
