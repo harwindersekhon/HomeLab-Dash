@@ -11,7 +11,8 @@
 
 ### 1. pi-hole.js, you will replace values at line 1 and line 3 which is your password and IP
 ### 2. your apache2 virtual host config change. You will change  /etc/apache2/sites-available/000-default.conf and replace IP 2.254 in my case with your proxmox IP
-`<VirtualHost *:80>
+`
+<VirtualHost *:80>
     ServerAdmin webmaster@localhost
     DocumentRoot /var/www/html
 
@@ -49,10 +50,12 @@
 </VirtualHost>
 `
 ##run these commands to enable mods
-`sudo a2enmod dir
+`
+sudo a2enmod dir
 sudo a2enmod mime
 sudo a2enmod rewrite
 sudo a2enmod proxy
 sudo a2enmod proxy_http
 sudo a2enmod ssl
-sudo a2enmod headers`
+sudo a2enmod headers
+`
