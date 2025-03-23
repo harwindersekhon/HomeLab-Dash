@@ -94,6 +94,21 @@ apache2ctl -M
 ```
 const PROXMOX_API_TOKEN =  "PVEAPIToken=api@pam!token2=cc2597c-SOMETHING
 ```
+- You need to know your proxmox node name, and replace it with your node name Line 86, 142, 181
+```
+ url: `${PROXMOX_BASE_URL}/nodes/mini-pc/disks/lvm`,
+```
+- mini-pc is my node name or hostname and you will be replacing all lines where you see "mini-pc" written with your proxmox hostname
+- For those who are not sure just run
+```
+hostname
+```
+And you will see your hostname like example below
+```
+root@mini-pc:~# hostname
+mini-pc
+```
+  
 # Weather
 - **Edit weather.js**
 - here change lat long and key
