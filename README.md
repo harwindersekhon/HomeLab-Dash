@@ -94,7 +94,7 @@ apache2ctl -M
 ```
 const PROXMOX_API_TOKEN =  "PVEAPIToken=api@pam!token2=cc2597c-SOMETHING
 ```
-- You need to know your proxmox node name, and replace it with your node name Line 86, 142, 181
+- You need to know your proxmox node name, and replace in proxmox.js file with your node name Line 86, 142, 181
 ```
  url: `${PROXMOX_BASE_URL}/nodes/mini-pc/disks/lvm`,
 ```
