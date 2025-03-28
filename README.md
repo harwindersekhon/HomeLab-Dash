@@ -1,4 +1,5 @@
 # Homelab-Dash 
+![Demo](demo.png?raw=true "Demo Page")
 ### What you will need
 
 - Linux container or vm debain based such as ubuntu 
