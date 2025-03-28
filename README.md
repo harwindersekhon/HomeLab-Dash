@@ -85,7 +85,7 @@ apache2ctl -M
 - Pi Hole password
 
 ### Changing IPs and keys according to your system
-# Proxmox 
+# Getting Proxmox data
 - You already changed IP in 000-default.conf file under 
 ```
 /etc/apache2/sites-available/
@@ -118,7 +118,7 @@ var lat = 43.XX //Example: New York latitude
   var apiKey = "XX"; // Replace with your OpenWeatherMap API key
   ```
 
-#Pi hole
+# Pi hole
 - Change following and ignore Line 2
 ```
 const PIHOLE_BASE_URL = "http://YOUR_PIHOLE_IP"; // Replace with your Pi-hole IP, e.g., http://192.168.1.66
